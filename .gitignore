@@ -1,0 +1,10 @@
+.env
+.idea
+.wttd
+*.sqlite3
+*.pcy
+__pycache__
+staticfiles
+problemas.txt
+problemas.jpg
+

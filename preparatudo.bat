@@ -1,0 +1,1 @@
+.wttd\scripts\activate
