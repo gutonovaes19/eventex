@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-from decouple import config
+from decouple import config, Csv
 from dj_database_url import parse as dburl
 
 
@@ -28,8 +28,12 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = config('DEBUG', default = False, cast = bool)
+#configuracao ate aula 0128
+#ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['127.0.0.1', '.localhost','.herokuapp.com'] #configuracao da aula 02/03 e que foi movida para o pontoENV
+#o objetico é dizer em quais ambientes podera ser rodada a aplicacao
+ALLOWED_HOSTS = config('ALLOWED_HOSTS',default=[], cast=Csv())
 
-ALLOWED_HOSTS = ['*']
 
 
 # Application definition
