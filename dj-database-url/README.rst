@@ -21,6 +21,8 @@ Supported Databases
 Support currently exists for PostgreSQL, PostGIS, MySQL, MySQL (GIS),
 Oracle, Oracle (GIS), Redshift, and SQLite.
 
+
+
 Installation
 ------------
 
