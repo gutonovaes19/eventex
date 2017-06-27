@@ -3,6 +3,7 @@
 .wttd
 *.sqlite3
 *.pcy
+*pcy
 __pycache__
 staticfiles
 problemas.txt
