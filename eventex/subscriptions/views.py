@@ -4,5 +4,5 @@
 from django.shortcuts import render
 
 
-def subscribe(request):
+def subscribe(request): #Aula m2a12 - até 18 minutos
     return render(request, 'subscriptions/subscription_form.html')
