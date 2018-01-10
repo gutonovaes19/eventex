@@ -20,6 +20,6 @@ from eventex.subscriptions.views import subscribe
 
 urlpatterns = [
     url(r'^$', eventex_views.home),
-    url(r'^inscricao/$', subscribe), #aula m2a12
+    url(r'^inscricao/$', subscribe), #M2A12 PASSO4 - cada conteudo do site, cria-se uma URL
     url(r'^admin/', include(admin.site.urls)),
 ]

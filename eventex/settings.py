@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eventex.core',
-    'eventex.subscriptions',
+    'eventex.subscriptions', #M2A12 - PASSO 1
 ]
 
 MIDDLEWARE = [
