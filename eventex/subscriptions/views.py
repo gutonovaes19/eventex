@@ -1,14 +1,34 @@
 """Toda viwe no Django recebe ao menos 1 argumento de http request, retorna sempre uma instancia de http response"""
-#M2A12 passo5
+# M2A12 passo5
 
-#request - é o que foi enviado
-#response, é o que tem que ser devolvido - chamou formulario, devolveu formulario
+# request - é o que foi enviado
+# response, é o que tem que ser devolvido - chamou formulario, devolveu formulario
+from django.contrib import messages
+from django.core import mail
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
+from django.template.loader import render_to_string
+
 from eventex.subscriptions.forms import SubscriptionForm
 
 
-def subscribe(request): #Aula m2a12 - até 18 minutos #m2a12 passo6 toda funcao é um callabel
-    #return httpresponse() - trocado pela linha abaixo durante os testes, passo a passo, foi criando cada linha
-    #context = {'form':None}
-    context = {'form': SubscriptionForm()}
-    return render(request, 'subscriptions/subscription_form.html', context)
+def subscribe(request):
+    if request.method == 'POST':
+        form = SubscriptionForm(request.POST)
+        if form.is_valid():
+            body = render_to_string('subscriptions/subscription_email.txt',
+                                    form.cleaned_data)
+            mail.send_mail('Confirmação de Inscrição',
+                           body,
+                           'contato@eventex.com.br',
+                           ['contato@eventex.com.br', form.cleaned_data['email']])
+            messages.success(request,'Inscrição realizada com sucesso!')
+            return HttpResponseRedirect('/inscricao/')
+        else:
+            return render(request, 'subscriptions/subscription_form.html',
+                          {'form': form})
+
+
+    else:
+        context = {'form': SubscriptionForm()}
+        return render(request, 'subscriptions/subscription_form.html', context)
