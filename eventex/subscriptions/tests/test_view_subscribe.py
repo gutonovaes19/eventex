@@ -5,7 +5,7 @@ from django.core import mail
 from django.test import TestCase
 from eventex.subscriptions.forms import SubscriptionForm
 
-class SubscribeTest(TestCase):
+class SubscribeGet(TestCase):
     def setUp(self):
         #cria instancia SELF para ficar visivel as outras funcoes
         """GET /INSCRICAO/ MUST RETURN STATUS CODE 200 """
@@ -25,12 +25,14 @@ class SubscribeTest(TestCase):
     def test_html(self): #passo8- teste de aceitação, faciliatr a conexão com o que acontecerá com o HTML
         #o form html ainda nao existe, mas crio o teste do que deverá conter
         """ Html must contain input tags """
-        self.assertContains(self.resp,'<form')
-        self.assertContains(self.resp,'<input',6)   #eram 5, depois do CRFS que é hidden (django, oculto, para evitar
-                                                    # invasores incluiu teste de 6 inputs
-        self.assertContains(self.resp,'type="text"', 3)
-        self.assertContains(self.resp,'type="email"')
-        self.assertContains(self.resp,'type="submit"')
+        tags = (('<form',1),
+                ('<input',6),
+                ('type="text"',3),
+                ('type="email"',1),
+                ('type="submit"',1))
+        for text, count in tags:
+            with self.subTest():
+                self.assertContains(self.resp,text,count)
 
     def test_csrf(self):
         """html must contain csrf"""
@@ -39,15 +41,12 @@ class SubscribeTest(TestCase):
     def test_has_form(self):
         """ Context must have SubscriptionForm"""
         # 25:00  tempplates são rendereizados versus rendereizado explicação????
+
         form = self.resp.context['form']
         self.assertIsInstance(form, SubscriptionForm)
 
-    def test_form_has_fields(self):
-        """form must have 4 fields 29:00"""
-        form = self.resp.context['form']
-        self.assertSequenceEqual(['name','cpf','email','phone'], list(form.fields))
 
-class SubscribePostTest(TestCase):
+class SubscribePostValid(TestCase):
     def setUp(self):
         data = dict(name='Henrique Bastos', cpf='12345678901',
                     email='henrique@bastos.net', phone='21-99618-6180')
@@ -59,30 +58,9 @@ class SubscribePostTest(TestCase):
     def test_send_subscribe_email(self):
         self.assertEqual(1,len(mail.outbox))
 
-    def test_subscription_email_subject(self):
-        email = mail.outbox[0] #outbox guarda uma lista [] de objetos enviados Objetos tem atributos como subject
-        expect = 'Confirmação de Inscrição'
-        self.assertEqual(expect,email.subject)
 
-    def test_subscription_email_from(self):
-        email = mail.outbox[0]  # outbox guarda uma lista [] de objetos enviados Objetos tem atributos como subject
-        expect = 'contato@eventex.com.br'
-        self.assertEqual(expect, email.from_email)
 
-    def test_subscription_email_to(self):
-        email = mail.outbox[0]  # outbox guarda uma lista [] de objetos enviados Objetos tem atributos como subject
-        expect = ['contato@eventex.com.br','henrique@bastos.net']
-        self.assertEqual(expect, email.to)
-
-    def test_subscription_email_body(self):
-        email = mail.outbox[0]  # outbox guarda uma lista [] de objetos enviados Objetos tem atributos como subject
-
-        self.assertIn('Henrique Bastos',email.body)
-        self.assertIn('12345678901', email.body)
-        self.assertIn('henrique@bastos.net', email.body)
-        self.assertIn('21-99618-6180', email.body)
-
-class SubscribeInvalidPost(TestCase):
+class SubscribePostInvalid(TestCase):
     def setUp(self):
         self.resp = self.client.post('/inscricao/', {})  # a chaves indica que esta recebendo um dicionario do formulario
 
