@@ -1,7 +1,7 @@
-#Eventex
+# Eventex
 Sistema de Eventos encomendado pela Morena.
 
-##Como desenvolver?
+## Como desenvolver?
 1. Clone o repositório.
 2. Crie um virtualenv em Python 3.5
 3. Ative o virtualenv.
@@ -18,7 +18,7 @@ pip install -r requirements.txt
 cp contrib/env-sample .env
 python manage.py test
 ```
-##Como fazer o Deploy?
+## Como fazer o Deploy?
 1. Crie uma Instância no Heroku
 2. Envie as configurações para o Heroku
 3. Defina uma SECURET_KEY segura para a instancia
