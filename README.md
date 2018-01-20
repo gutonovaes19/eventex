@@ -18,7 +18,7 @@ pip install -r requirements.txt
 cp contrib/env-sample .env
 python manage.py test
 ```
-##Como fazer o Deply?
+##Como fazer o Deploy?
 1. Crie uma Instância no Heroku
 2. Envie as configurações para o Heroku
 3. Defina uma SECURET_KEY segura para a instancia
@@ -26,7 +26,7 @@ python manage.py test
 5. Configure o serviço de e-mail.
 6. Envie o código para o heroku
 
-```Comsole
+```Console
 heroku create minhainstancia
 heroku config:push
 heroku config:set SECRET_KEY='python contrib/secret_gen.py'
