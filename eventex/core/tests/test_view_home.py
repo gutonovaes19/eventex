@@ -1,6 +1,7 @@
 from django.test import TestCase
 
 #testcase já vem com o django
+
 class HomeTest(TestCase):
     def setUp(self):
         #self é uma variável de instancia para ficar visivel ns outras funcoes
