@@ -34,7 +34,7 @@ DEBUG = config('DEBUG', default = False, cast=bool)
 #ALLOWED_HOSTS = ['127.0.0.1', '.localhost','.herokuapp.com']
 #configuracao da aula 02/03 e que foi movida para o 'pontoENV'
 #o objetico é dizer em quais ambientes podera ser rodada a aplicacao
-ALLOWED_HOSTS = config('ALLOWED_HOSTS',default=[], cast=Csv()) #o CSV lerá a string do ENV e separará valores por vírgula
+ALLOWED_HOSTS = config('ALLOWED_HOSTS',default=[], cast=Csv())
 DEFAULT_FROM_EMAIL = 'contato@eventex.com.br'
 
 
