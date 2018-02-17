@@ -7,3 +7,7 @@ gunicorn==19.4.1
 psycopg2==2.7.3.2
 django-extensions==1.9.9
 django-test-without-migrations==0.6
+<<<<<<< HEAD
+=======
+
+>>>>>>> 27f9dbba17fc377078643ac2ec13e6d6bb661f8c
