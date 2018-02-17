@@ -34,7 +34,8 @@ DEBUG = config('DEBUG', default = False, cast=bool)
 #ALLOWED_HOSTS = ['127.0.0.1', '.localhost','.herokuapp.com']
 #configuracao da aula 02/03 e que foi movida para o 'pontoENV'
 #o objetico é dizer em quais ambientes podera ser rodada a aplicacao
-ALLOWED_HOSTS = config('ALLOWED_HOSTS',default=[], cast=Csv()) #o CSV lerá a string do ENV e separará valores por vírgula
+ALLOWED_HOSTS = config('ALLOWED_HOSTS',default=[], cast=Csv())
+DEFAULT_FROM_EMAIL = 'contato@eventex.com.br'
 
 
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'eventex.core',
     'eventex.subscriptions', #M2A12 - PASSO 1
 ]
@@ -114,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -130,3 +132,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# email configuration
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT',cast=int)
+EMAIL_USE_TSL = config('EMAIL_USE_TSL',cast=bool)
+EMAIL_USE_SSL = config('EMAIL_USE_SSL',cast=bool)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+
