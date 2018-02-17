@@ -1,6 +1,2 @@
-Requirement already satisfied: dj-database-url==0.4.2 in c:\wttd\.wttd\lib\site-packages (from -r requirements.txt (line 1))
-Requirement already satisfied: dj-static==0.0.6 in c:\wttd\.wttd\lib\site-packages (from -r requirements.txt (line 2))
-Requirement already satisfied: Django==1.11.2 in c:\wttd\.wttd\lib\site-packages (from -r requirements.txt (line 3))
-Requirement already satisfied: python-decouple==3.0 in c:\wttd\.wttd\lib\site-packages (from -r requirements.txt (line 4))
-Requirement already satisfied: static3==0.7.0 in c:\wttd\.wttd\lib\site-packages (from -r requirements.txt (line 5))
-Collecting gunicorn==19.4.1 (from -r requirements.txt (line 6))
+Creating test database for alias 'default'...
+Creating test database for alias 'default'...
