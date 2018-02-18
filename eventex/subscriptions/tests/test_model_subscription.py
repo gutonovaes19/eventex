@@ -9,7 +9,7 @@ class SubscriptionModelTest(TestCase):
             name='Henrique Bastos',
             cpf='12345678901',
             email='henrique@bastos.net',
-            phone='21-996186180'
+            phone='21-996186180',
         )
-        obj.save() #saalva o objeto no banco. ate entao ewstava na memoria
-        self.assertTrue(Subscriptions.objects.exists())
+        obj.save()
+        self.assertTrue(Subscription.objects.exists())

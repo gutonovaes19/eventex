@@ -49,7 +49,7 @@ class SubscribeGet(TestCase):
 class SubscribePostValid(TestCase):
     def setUp(self):
         data = dict(name='Henrique Bastos', cpf='12345678901',
-                    email='henrique@bastos.net', phone='21-99618-6180')
+                    email='henrique@bastos.net', phone='21-996186180')
         self.resp  = self.client.post('/inscricao/', data)
     def test_post(self):
         """ Valid POST should edirect to /incricao/ """
