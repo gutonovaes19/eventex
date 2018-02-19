@@ -13,4 +13,8 @@ ativar.bat
 desativar.bat
 _netrc
 .ipynb_checkpoints/
+_macosx_
+dj-database-url
+*.jpg
+*.rar
 
