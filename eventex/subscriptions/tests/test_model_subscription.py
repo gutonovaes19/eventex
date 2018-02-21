@@ -12,6 +12,7 @@ class SubscriptionModelTest(TestCase):
             phone='21-99618-6180'
         )
         self.obj.save()
+
     def test_create(self):
         self.assertTrue(Subscription.objects.exists())
 
