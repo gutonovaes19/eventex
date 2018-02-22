@@ -10,6 +10,7 @@ Revisado em 27/01/2018
 4. Instale as dependencias.
 5. Configure a instancia com o .env
 6 Execute os testes. 
+6.1 Macete manage.bat 
 
 ```console
 git clone git@github.com:gutonovaes19/eventex
@@ -19,6 +20,7 @@ source .wtdd/bin/activate
 pip install -r requirements-dev.txt
 cp contrib/env-sample .env
 python manage.py test
+manage.bat (@python "%VIRTUAL_ENV%\..\manage.py" %*)
 ```
 ## Como fazer o Deploy?
 1. Crie uma Instância no Heroku
@@ -37,3 +39,6 @@ heroku config:Debug=False
 git push heroku master --force
 
 ```
+
+## Lembrete para Testes
+1. Conferir configuração de e-mail remetente
