@@ -33,7 +33,6 @@ def create(request):
                form.cleaned_data['email'],
                'subscriptions/subscription_email.txt',
                form.cleaned_data)
-
     Subscription.objects.create(**form.cleaned_data)
 
     messages.success(request,'Inscrição realizada com sucesso!')
