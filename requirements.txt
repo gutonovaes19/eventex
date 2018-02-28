@@ -30,7 +30,6 @@ psycopg2==2.7.3.2
 Pygments==2.2.0
 python-dateutil==2.6.0
 python-decouple==3.0
-pytz==2017.2
 pyzmq==16.0.2
 simplegeneric==0.8.1
 six==1.10.0
@@ -42,3 +41,4 @@ typing==3.6.4
 wcwidth==0.1.7
 webencodings==0.5.1
 widgetsnbextension==2.0.0
+pytz
