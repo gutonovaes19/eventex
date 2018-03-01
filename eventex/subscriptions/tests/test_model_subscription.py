@@ -21,5 +21,5 @@ class SubscriptionModelTest(TestCase):
         self.assertIsInstance(self.obj.created_at,datetime)
 
     def test_str(self):
-        self.assertEqual('Henrique Bastos',)
+        self.assertEqual('Henrique Bastos', str(self.obj))
 

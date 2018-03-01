@@ -8,7 +8,6 @@ from django.template.loader import render_to_string
 from eventex.subscriptions.forms import SubscriptionForm
 from eventex.subscriptions.models import Subscription
 
-
 def subscribe(request):
     if request.method == 'POST':
         return create(request)
@@ -24,15 +23,12 @@ def create(request):
                       {'form': form})
 
     subscription = Subscription.objects.create(**form.cleaned_data)
-
-    # sendmail
-
+    # send subscriptions email
     _send_mail('Confirmação de Inscrição',
                settings.DEFAULT_FROM_EMAIL,
                subscription.email,
                'subscriptions/subscription_email.txt',
                {'subscription': subscription})
-
     return HttpResponseRedirect('/inscricao/{}/'.format(subscription.pk))
 
 
@@ -42,9 +38,10 @@ def new(request):
                   {'form': SubscriptionForm()})
 
 
-def detail(request):
-    from django.http import HttpResponse
-    return HttpResponse()
+def detail(request, pk):
+    return render(request, 'subscriptions/subscription_detail.html',
+                  {'subscription':Subscription()})
+
 
 
 #UNDESCORE - sinaliza aos programadores que posso mudar a API a qq momento, sem compromisso
