@@ -11,9 +11,11 @@ class SubscriptionDetailGet(TestCase):
         self.assertEqual(200,self.resp.status_code)
 
     def test_template(self):
-        self.assertTemplateUsed(self.resp, "subscriptions/subscription_detail.html")
+        self.assertTemplateUsed(self.resp,
+                                'subscriptions/subscription_detail.html')
 
     def test_context(self):
-        subscription = self.resp.context['subscriptions']
+        subscription = self.resp.context['subscription']
         self.assertIsInstance(subscription,Subscription)
+
 
