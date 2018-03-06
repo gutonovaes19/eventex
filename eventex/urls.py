@@ -17,7 +17,7 @@ from django.contrib import admin
 from eventex.core import views as eventex_views
 from eventex.subscriptions.views import subscribe,detail
 
-
+#url(r'^inscricao/(\d+)/$', detail) --- group match
 urlpatterns = [
     url(r'^$', eventex_views.home),
     url(r'^inscricao/$', subscribe),

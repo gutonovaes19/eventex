@@ -5,7 +5,13 @@ from eventex.subscriptions.models import Subscription
 
 class SubscriptionDetailGet(TestCase):
     def setUp(self):
-        self.resp = self.client.get('/inscricao/1/')
+        self.obj = Subscription.objects.create(
+            name='Henrique Bastos',
+            cpf='12345678901',
+            email='henrique@bastos.net',
+            phone='21-996186180'
+        )
+        self.resp = self.client.get('/inscricao/{}/'.format(self.obj.pk))
 
     def test_get(self):
         self.assertEqual(200,self.resp.status_code)
@@ -14,8 +20,25 @@ class SubscriptionDetailGet(TestCase):
         self.assertTemplateUsed(self.resp,
                                 'subscriptions/subscription_detail.html')
 
+    #testa se o que veio no context é uma instancia de subscription
     def test_context(self):
-        subscription = self.resp.context['subscription']
+        subscription = self.resp.context['subscription']#variavel de contexto subscription
         self.assertIsInstance(subscription,Subscription)
 
+    def test_html(self):
+        contentstupla = (self.obj.name,
+                         self.obj.cpf,
+                         self.obj.phone,
+                         self.obj.email)
+
+        with self.subTest():
+            for expected in contentstupla:
+                self.assertContains(self.resp,expected)
+
+
+class SubscriptionDetailNotFound(TestCase):
+    #se der erro ao enviar, nao dar erro 500 mas 404.
+    def test_not_found(self):
+        resp = self.client.get('/inscricao/0/')
+        self.assertEqual(404, resp.status_code)
 

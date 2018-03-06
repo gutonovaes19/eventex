@@ -2,7 +2,7 @@
 # response, é o que tem que ser devolvido - chamou formulario, devolveu formulario
 from django.conf import settings
 from django.core import mail
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from eventex.subscriptions.forms import SubscriptionForm
@@ -28,7 +28,8 @@ def create(request):
                settings.DEFAULT_FROM_EMAIL,
                subscription.email,
                'subscriptions/subscription_email.txt',
-               {'subscription': subscription})
+               {'subscription': subscription}) #dicionario
+    #/inscricao/1/ foi trocado para sunscriptions.pk. Pois o nro 1 é referencia ao PK.
     return HttpResponseRedirect('/inscricao/{}/'.format(subscription.pk))
 
 
@@ -39,8 +40,16 @@ def new(request):
 
 
 def detail(request, pk):
+    try:
+        #1o pk é o kwargs do metodo Get. 2o pk é a variável que foi passada.
+        subscription = Subscription.objects.get(pk=pk)
+    except Subscription.DoesNotExist:
+        raise Http404
+
+
+
     return render(request, 'subscriptions/subscription_detail.html',
-                  {'subscription':Subscription()})
+                  {'subscription': subscription})
 
 
 
