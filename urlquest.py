@@ -18,10 +18,10 @@ class LENDConf:
     def __init__(self, model):
         self.model = model
         self.urlpatterns =[
-            url(r'^/$', list_, name='list'),
-            url(r'^/new/$', new, name='new'),
-            url(r'^/delete/$', delete, name='delete'),
-            url(r'^/(\d+)/$', edit, name='edit'),
+            url(r'^$', list_, name='list'),
+            url(r'^new/$', new, name='new'),
+            url(r'^delete/$', delete, name='delete'),
+            url(r'^(\d+)/$', edit, name='edit'),
         ]
 class MySiteURLConf:
     urlpatterns =[
@@ -30,8 +30,6 @@ class MySiteURLConf:
         url(r'^logout/$', auth, kwargs={'action': 'logout'}, name='logout'),
         url(r'^users/', include(LENDConf('users'), namespace='users')),
         url(r'^groups/', include(LENDConf('groups'), namespace='groups')),
-
-
     ]
 
 set_urlconf(MySiteURLConf)
