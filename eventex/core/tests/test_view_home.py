@@ -1,11 +1,12 @@
 from django.test import TestCase
+from django.shortcuts import resolve_url as r
 
 #testcase já vem com o django
 
 class HomeTest(TestCase):
     def setUp(self):
         #self é uma variável de instancia para ficar visivel ns outras funcoes
-        self.response = self.client.get('/')
+        self.response = self.client.get(r('home'))
 
     def test_get(self):
         #Docstring - mensagem que erá retornada pelo teste
@@ -17,4 +18,5 @@ class HomeTest(TestCase):
         self.assertTemplateUsed(self.response, 'index.html')
 
     def test_subscription_link(self):
-        self.assertContains(self.response,'href="/inscricao/"')
+        expected = 'href="{}"'.format(r('subscriptions:new'))
+        self.assertContains(self.response, expected)
