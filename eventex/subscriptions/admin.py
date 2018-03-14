@@ -9,6 +9,9 @@ class SubscriptionModelAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email','phone','cpf','created_at')
     list_filter = ('paid','created_at')
 
+    #custom actions - lista de actions
+    actions = ['mark_as_paid']
+
     def subscribed_today(self,obj):
         return obj.created_at == now().date()
     subscribed_today.short_description = 'inscrito hoje?'
