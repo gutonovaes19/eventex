@@ -1,6 +1,6 @@
 from django.test import TestCase
-from eventex.core.models import Speaker
 from django.shortcuts import resolve_url as r
+from eventex.core.models import Speaker
 
 class SpeakerModelTest(TestCase):
     def setUp(self):
