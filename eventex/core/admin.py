@@ -1,8 +1,15 @@
 from django.contrib import admin
-from eventex.core.models import Speaker
+from eventex.core.models import Speaker, Contact
 from django.utils.html import format_html
 
+#para usar o modelo contact no admin, fez atraves do speaker (master detail)
+class ContactInLine(admin.TabularInline):
+    model = Contact
+    extra = 1
+
+
 class SpeakerModelAdmin(admin.ModelAdmin):
+    inlines = [ContactInLine]
     prepopulated_fields = {'slug': ('name',)}
     list_display = ['name','photo_img', 'website_link']
 

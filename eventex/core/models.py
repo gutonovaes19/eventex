@@ -19,3 +19,29 @@ class Speaker(models.Model):
         return r('speaker_detail',slug=self.slug)
 
 
+
+class Contact(models.Model):
+    #atributo de classe -
+    #tupla de tuplas
+    #o bloco será validado no full_clean, método da classe
+    cEMAIL = 'E'
+    cPHONE = 'P'
+
+    KINDS = (
+        (cEMAIL,'Email'),
+        (cPHONE,'Telefone'),
+    )
+    #campos de realcionameno, o verbolsename vem no final
+    speaker = models.ForeignKey('Speaker', verbose_name='palestante')
+    kind = models.CharField(max_length=1, choices=KINDS)
+    value = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = 'contato'
+        verbose_name_plural = 'contatos'
+
+    def __str__(self):
+        return self.value
+
+
+
