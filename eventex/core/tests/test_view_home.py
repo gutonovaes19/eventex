@@ -4,8 +4,8 @@ from django.shortcuts import resolve_url as r
 #testcase já vem com o django
 
 class HomeTest(TestCase):
+    fixtures = ['keynotes.json']
     def setUp(self):
-        #self é uma variável de instancia para ficar visivel ns outras funcoes
         self.response = self.client.get(r('home'))
 
     def test_get(self):
@@ -23,11 +23,10 @@ class HomeTest(TestCase):
 
     def test_speakers(self):
         """ must show keynote speakers"""
+
         contents = [
-            'Grace Hopper',
-            'http://hbn.link/hopper-pic',
-            'Alan Turing',
-            'http://hbn.link/turing-pic',
+            'href="{}"'.format(r('speaker_detail',slug='grace-hopper')),
+            'href="{}"'.format(r('speaker_detail', slug='alan-turing')),
         ]
         for expected in contents:
             with self.subTest():

@@ -5,7 +5,7 @@ from eventex.core.models import Speaker
 # Create your views here.
 
 def home(request):
-    speakers = Speaker.objetcs.all()
+    speakers = Speaker.objects.all()
     return render(request,'index.html', {'speakers': speakers})
 
 
