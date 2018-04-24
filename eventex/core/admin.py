@@ -1,5 +1,5 @@
 from django.contrib import admin
-from eventex.core.models import Speaker, Contact
+from eventex.core.models import Speaker, Contact, Talk
 from django.utils.html import format_html
 
 #para usar o modelo contact no admin, fez atraves do speaker (master detail)
@@ -26,3 +26,4 @@ class SpeakerModelAdmin(admin.ModelAdmin):
     photo_img.short_description = 'foto'
 
 admin.site.register(Speaker, SpeakerModelAdmin)
+admin.site.register(Talk)
