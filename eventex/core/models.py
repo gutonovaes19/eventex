@@ -45,7 +45,7 @@ class Contact(models.Model):
 
 class Talk(models.Model):
     title = models.CharField('título',max_length=200)
-    start = models.TimeField('início', blank=True)
+    start = models.TimeField('início', blank=True, null=True)
     description = models.TextField('descrição', blank=True)
     speakers=models.ManyToManyField('Speaker',verbose_name = 'palestrantes', blank=True )
 
@@ -53,5 +53,6 @@ class Talk(models.Model):
         verbose_name_plural = 'palestras'
         verbose_name = 'palestra'
 
-
+    def __str__(self):
+        return self.title
 
