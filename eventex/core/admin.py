@@ -27,11 +27,14 @@ class SpeakerModelAdmin(admin.ModelAdmin):
 
     def email(self,obj):
         return Contact.objects.filter(kind=Contact.EMAIL, speaker=obj).first()
+
+    email.short_description = 'e-mail'
+
     def phone(self,obj):
         return Contact.objects.filter(kind=Contact.PHONE, speaker=obj).first()
 
     phone.short_description = 'telefone'
-    email.short_description = 'e-mail'
+
 
 admin.site.register(Speaker, SpeakerModelAdmin)
 admin.site.register(Talk)
