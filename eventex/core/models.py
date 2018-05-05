@@ -24,12 +24,12 @@ class Contact(models.Model):
     #atributo de classe -
     #tupla de tuplas
     #o bloco será validado no full_clean, método da classe
-    cEMAIL = 'E'
-    cPHONE = 'P'
+    EMAIL = 'E'
+    PHONE = 'P'
 
     KINDS = (
-        (cEMAIL,'Email'),
-        (cPHONE,'Telefone'),
+        (EMAIL,'E-mail'),
+        (PHONE,'Telefone'),
     )
     #campos de realcionameno, o verbolsename vem no final
     speaker = models.ForeignKey('Speaker', verbose_name='palestante')

@@ -11,12 +11,12 @@ class ContactModelTest(TestCase):
         )
 
     def test_email(self):
-        contact = Contact.objects.create(speaker=self.speaker,kind=Contact.cEMAIL,
+        contact = Contact.objects.create(speaker=self.speaker,kind=Contact.EMAIL,
                                          value='henrique@bastos.net')
         self.assertTrue(Contact.objects.exists())
 
     def test_phone(self):
-        contact = Contact.objects.create(speaker=self.speaker,kind=Contact.cPHONE,
+        contact = Contact.objects.create(speaker=self.speaker,kind=Contact.PHONE,
                                         value='21-996186180')
         self.assertTrue(Contact.objects.exists())
 
@@ -27,6 +27,9 @@ class ContactModelTest(TestCase):
 
     def teste_str(self):
         #só instancia o objeto, nao cria no banco.
-        contact = Contact(speaker=self.speaker, kind=Contact.cEMAIL,value='henrique@bastos.net')
+        contact = Contact(speaker=self.speaker, kind=Contact.EMAIL,value='henrique@bastos.net')
         self.assertEqual('henrique@bastos.net', str(contact))
+
+Class ContatcManagerTest(Testcase): (04:00)
+
 
